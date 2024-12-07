@@ -1,80 +1,55 @@
-// import React from 'react'
-// import mongodb from './Assets/mongodb.jpg'
-// import express from './Assets/express.png'
-// import java from './Assets/java.png'
-// import javascript from './Assets/javascript.png'
-// import css from './Assets/css.jpg'
-// import html from './Assets/html.png'
-// import react from './Assets/reactjs.png'
-// import node from './Assets/node.png'
-// const Portfolio = () => {
-
-//   const cardItems = [{
-//     id:1,
-//     logo:html,
-//     name:"HTML"
-//   },
-// {
-//   id:2,
-//   logo:css,
-//   name: "CSS"
-// },
-// {
-//   id:3,
-//   logo:javascript,
-//   name: "Javascript"
-
-// },
-// {
-//   id:4,
-//   logo: react,
-//   name: "React_Js"
-// },
-// {id:5,
-// logo: mongodb,
-// name: "MongoDB"
-// },{
-//   id:6,
-//   logo:express,
-//   name: "Express"
-// },
-// {
-//   id:7,
-//   logo: node,
-//   name: "NodeJs"
-// },
-// {
-//   id:8,
-//   logo: java,
-//   name : "Java"
-// }
-// ]
 
 
-//   return (
-//     <>
-//     <div>
-//       <div>
-//         <h1>Portfolio</h1>
-//       </div>
-      
-//     </div>
-      
-//     </>
-    
-//   )
-// }
-
-// export default Portfolio
-
-import React from 'react'
+import React, { useState } from 'react'
+import Navbar from '../components/Navbar'
 
 const Portfolio = () => {
+
+  const portfolioData = [
+    {
+      id: 1,
+      image: "./mahesh.jpg",
+      title: "E-commerce",
+      link: "https://example.com/project-one",
+    },
+    {
+      id: 2,
+      image: "./logo512.png",
+      title: "Employee",
+      link: "https://example.com/project-two",
+    },
+    {
+      id: 3,
+      image: "./logo192.png",
+      title: "Project Three",
+      link: "https://example.com/project-three",
+    },
+  ];
   return (
     <>
-        <div >
-            <div className='w-full max-w-7xl h-[400px] px-4 mx-auto sm:px-8 mt-24 bg-slate-400'></div>
+      <Navbar>
+        <div className='md:p-10 md:px-32 '>
+          <h1 className='px-4'>THis is the Portfolio part of the project where every project list here</h1>
+
+          <div className=' grid md:grid-cols-3 grid-cols-1 mx-auto md:gap-6 gap-2 md:p-4 p-4'>
+
+            {portfolioData.map((item, index) => (
+              <div key={index.id} className='shadow-lg rounded-md  md:px-2'>
+                <img src={item.image} className='w-full p-2  object-fill md:h-[400px] h-[300px]' />
+                <h1 className='font-semibold my-2 text-center text-black'>{item.title}</h1>
+                <a
+                  href={item.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <h1 className='my-2  text-center font-semibold bg-slate-400 text-white p-1 md:mx-32 mx-20 rounded hover:bg-green-300 hover:text-black'>View Project</h1>            </a>
+
+              </div>
+            ))}
+          </div>
         </div>
+
+      </Navbar>
     </>
   )
 }

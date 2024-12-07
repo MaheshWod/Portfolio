@@ -11,6 +11,7 @@ import photoshop from '../Assetss/photoshop.jpg';
 import figma from '../Assetss/figma.png';
 import xdjpg from '../Assetss/xdjpg.jpg';
 import illustrator from '../Assetss/illustrator.png';
+import Navbar from '../components/Navbar';
 
 const Skills = () => {
   const cardItems = [
@@ -30,10 +31,11 @@ const Skills = () => {
 
   return (
     <>
+    <Navbar>
       <div className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-8'>
         <div>
           <h1 className='flex text-3xl font-bold mb-5 justify-center items-center'>Skills</h1>
-          <p className='font-semibold flex justify-center items-center'>Work Experiences</p>
+          <p className='font-semibold flex justify-center items-center'>Work Experiences and Familier</p>
         </div>
         <div className='grid grid-cols-2 md:grid-cols-3 gap-7 my-3 lg:grid-cols-3'>
           {cardItems.map(({ id, logo, name }) => (
@@ -44,6 +46,7 @@ const Skills = () => {
           ))}
         </div>
       </div>
+      </Navbar>
     </>
   );
 };

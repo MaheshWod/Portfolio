@@ -1,92 +1,109 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
-import { Form } from 'react-router-dom'
-import { useForm } from "react-hook-form";
-import axios from 'axios';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import firebaseConfigApp from '../util/firebase-app'
+import { getFirestore,addDoc, collection  } from 'firebase/firestore'
+import Swal from 'sweetalert2'
+const db = getFirestore(firebaseConfigApp)
 
 const Contact = () => {
-
-  const { register, 
-    handleSubmit, 
-    watch, 
-    formState: { errors } }
-   = useForm();
-  const onSubmit = async (data) => {
-const userinfo = {
-  name: data.name,
-  email:data.email,
-  message:data.message
-}
-try{
-  await axios.post("https://getform.io/f/amdpqnxb", userinfo);
-  alert("your message has been sent")
-}catch(error){
-  console.log(error)
-}
-
-
+    const navigate = useNavigate()
+  const [formValue,setFormValue]= useState(
+    {
+      FullName:'',
+      email:'',
+      message:''
+  
+    }
+  )
+  // e.preventDefault()
+  // console.log(formValue)
+  const submitvalue = async(e)=>{
+  try{
+    e.preventDefault()
+    const snapshot = await addDoc(collection(db,"contact"), formValue)
+    console.log(snapshot)
+    navigate('/')
+    new Swal({
+      icon:"Success",
+      title:"Send Message Success firebase"
+     })
+  }
+  catch(err){
+    new Swal({
+      icon:"Error",
+      title:"Send Message unsuccess",
+      text:err.message
+     })
+  }
+  }
+  
+  const handleChange = (e)=>{
+   const input= e.target
+   const name = input.name
+   const value = input.value
+  
+   setFormValue({
+    ...formValue,
+    [name]:value
+   })
   }
 
   return (
     <>
-      <Navbar />
-      <div className='max-w-screen-2xl container mx-auto px-4 md:px-20 my-16 flex flex-col items-center'>
-        <h1 className='text-3xl font-bold mb-4'>Contact Me</h1>
-        <span className='mb-5 font-semibold'>Please fill out the form below to contact me</span>
-        <form onSubmit={handleSubmit(onSubmit)}
-        action='https://getform.io/f/amdpqnxb'
-        method='POST'
-         className='bg-slate-200 w-96 px-8 py-6 rounded-xl flex flex-col items-center'>
-          <h1 className='text-semibold mb-4'>Send Your Message</h1>
-
-          <div className='w-full'>
-            <label className='block text-grey-700 mt-2'>
-              Full Name
-            </label>
-            <input
-             {...register("name", { required: true })}
-             className='shadow appearance-none border rounded py-2 px-2 pt-1 text-green-700 leading-tight focus:outline-none w-full'
-              id='name'
-              type='text'
-              name='name'
-              placeholder='Enter Your Full Name'
-            />
-            {errors.name && <span>This field is required</span>}
-
-            <label className='block text-grey-700 mt-2'>
-              Email Address
-            </label>
-            <input
-            {...register("email", { required: true })}
-             className='shadow appearance-none border rounded py-2 px-2 pt-1 text-green-700 leading-tight focus:outline-none w-full'
-              id='email'
-              type='text'
-              name='email'
-              placeholder='Enter Your Email'
-            />
-            {errors.email && <span>This field is required</span>}
-
-            <label className='block text-grey-700 mt-2'>
-              Message
-            </label>
-            <textarea 
-            {...register("message", { required: true })}
-            className='shadow appearance-none border rounded py-2 px-2 pt-1 text-green-700 leading-tight focus:outline-none w-full'
-              id='message'
-              name='message'
-              type = 'text'
-              placeholder='Enter Your Query'
-            ></textarea>
-            {errors.message && <span>This field is required</span>}
+<Navbar>
+<div className="flex flex-col md:w-6/12  md:mx-auto mx-2 md:my-5 my-2 py-4 shadow-lg border rounded bg-slate-200">
+          {/* <div className="md:w-full md:h-2/6 w-screen h-36">
+            <img src="/k.jpg" className="w-full h-full object-cover" alt="Contact Banner" />
+          </div> */}
+          <div className='px-4'>
+            <form  className="md:mt-8 space-y-6" onSubmit={submitvalue}>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Full Name</label>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="FullName"
+                  type="text"
+                  value={formValue.FullName}
+                  placeholder="Enter your name"
+                  className="p-3 border border-grey-600 rounded"
+                />
+              </div>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Email</label>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="email"
+                  type="email"
+                  value={formValue.email}
+                  placeholder="Enter your Email"
+                  className="p-3 border border-grey-600 rounded"
+                />
+              </div>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Message</label>
+                <textarea
+                  onChange={handleChange}
+                  required
+                  name="message"
+                  value={formValue.message}
+                  placeholder="Enter your message"
+                  className="p-3 border border-grey-600 rounded"
+                />
+              </div>
+              <button
+                type="submit"
+                className="md:py-3 md:px-8 px-4 py-1 rounded bg-slate-500 mt-4 text-white font-semibold hover:bg-green-300 hover:text-white"
+              >
+                Submit
+              </button>
+            </form>
           </div>
-
-          <div className='w-full flex justify-start mt-4'>
-            <button type = 'submit'className='bg-black text-white rounded-xl px-3 py-2 hover:bg-slate-700'>
-              Send
-            </button>
-          </div>
-        </form>
-      </div>
+        </div>
+</Navbar>    
     </>
   )
 }

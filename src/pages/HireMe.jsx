@@ -1,58 +1,137 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
+import { useNavigate } from 'react-router-dom'
+import firebaseConfigApp from '../util/firebase-app'
+import { getFirestore,addDoc, collection  } from 'firebase/firestore'
+import Swal from 'sweetalert2'
 
+const db = getFirestore(firebaseConfigApp)
 const HireMe = () => {
+  const navigate = useNavigate()
+const [formValue,setFormValue]= useState(
+  {
+    FirstName:'',
+    LastName:'',
+    email:'',
+    mobile:'',
+    message:''
+
+  }
+)
+// e.preventDefault()
+// console.log(formValue)
+const submitvalue = async(e)=>{
+try{
+  e.preventDefault()
+  const snapshot = await addDoc(collection(db,"hireme"), formValue)
+  console.log(snapshot)
+  navigate('/')
+  new Swal({
+    icon:"Success",
+    title:"Send Message Successful firebase"
+   })
+}
+catch(err){
+  new Swal({
+    icon:"Error",
+    title:"Send Message unsuccess",
+    text:err.message
+   })
+}
+}
+
+const handleChange = (e)=>{
+ const input= e.target
+ const name = input.name
+ const value = input.value
+
+ setFormValue({
+  ...formValue,
+  [name]:value
+ })
+}
+
   return (
     <>
-    <Navbar/>
-<div class="max-w-screen-xl mx-auto my-7 lg:px-20" id="contact">
-  <form action="" method="post">
-    <div class="w-full p-8 my-4 mr-auto shadow-2xl md:px-12 lg:w-9/12 lg:pl-20 lg:pr-40 rounded-2xl">
-      <div class="flex">
-        <h1 class="text-5xl text-[#A85168] font-bold ">Hire Me</h1>
-      </div>
-      <div class="grid grid-cols-1 gap-5 mt-5 md:grid-cols-2">
-        <input class="w-full p-3 mt-2 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:border-outline" type="text" placeholder="First Name" name="firstName" autocomplete="name" />
-        <input class="w-full p-3 mt-2 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:shadow-outline" type="text" placeholder="Last Name" name="lastName" autocomplete="family-name" />
-        <input class="w-full p-3 mt-2 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:shadow-outline" type="email" placeholder="Email" name="email" autocomplete="email" />
-        <input class="w-full p-3 mt-2 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:shadow-outline" type="tel" placeholder="Phone" name="phone" autocomplete="tel" />
-      </div>
-      <div class="my-4">
-        <textarea placeholder="Message" class="w-full h-32 p-3 mt-2 text-gray-900 bg-gray-100 rounded-lg focus:outline-none focus:shadow-outline" name="message" autocomplete="message"></textarea>
-      </div>
-      <div class="w-1/2 my-2 lg:w-1/4">
-        <button type="submit" class="w-full p-3 text-sm font-bold tracking-wide text-gray-100 uppercase bg-[#A12347] rounded rounded-xl hover:bg-blue-700-lg focus:outline-none focus:shadow-outline">
-                        Send Message
-                    </button>
-      </div>
-    </div>
-  </form>
-  <div class="w-full px-8 py-12 ml-auto bg-[#1B6485] lg:-mt-96 lg:w-2/6 rounded-2xl">
-    <div class="flex flex-col text-white">
-      <div class="flex w-2/3 my-4 lg:w-1/2">
-        <img class="pt-2 pr-2 h-7 w-7" src="https://icons8.com/icon/OBmVbH2qOGwK/location" alt="location"/>
-        <div>
-          <h2 class="text-2xl">Office</h2>
-          <p class="text-gray-200">27B Grassfield, Lumely</p>
-        </div>
-      </div>
-      <div class="flex w-2/3 my-4 lg:w-1/2">
-        <img class="pt-2 pr-2 h-7 w-7 " src="https://icons8.com/icon/letUS1DJO1ou/call" alt="call us"/>
-        <div>
-          <h2 class="text-2xl">Call</h2>
-          <p class="text-gray-200">Tel:+232-79-15-39-15</p>
-        </div>
-      </div>
-      <div class="flex w-2/3 my-4 lg:w-1/2">
-        <img class="pt-2 pr-2 h-7 w-7" src="https://icons8.com/icon/LPcVDft9Isqt/email" alt="Email us"/>
-        <div>
-          <h2 class="text-2xl">Email</h2>
-          <p class="text-gray-200">Email:kanujosephmelvin@gmail.com</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+      <Navbar>
+        
+
+
+        <div className="flex flex-col md:w-8/12  md:mx-auto mx-2 md:my-5 my-2 py-4 shadow-lg border rounded bg-slate-200">
+        
+            <form  className=" md:space-y-4  md:p-4 p-3 " onSubmit={submitvalue}>
+              <div className='grid md:grid-cols-2 grid-cols-1 md:gap-4 gap-2 mx-auto'>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">FirstName </label>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="FirstName"
+                  type="text"
+                  value={formValue.FirstName}
+                  placeholder="Enter your name"
+                  className="md:p-3 p-2 border border-grey-600 rounded"
+                />
+              </div>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Last Name</label>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="LastName"
+                  type="text"
+                  value={formValue.LastName}
+                  placeholder="Enter your name"
+                  className="md:p-3 p-2 border border-grey-600 rounded"
+                />
+              </div>
+              </div>
+             <div  className='grid md:grid-cols-2 grid-cols-1 md:gap-4 gap-2 mx-auto justify-between'>
+             <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Email</label>
+                <input
+                  onChange={handleChange}
+                  required
+                  name="email"
+                  type="email"
+                  value={formValue.email}
+                  placeholder="Enter your Email"
+                  className="md:p-3 p-2 border border-grey-600 rounded"
+                />
+              </div>
+             <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Ph.Number</label>
+                <input
+onChange={handleChange}                  required
+                  name="mobile"
+                  type="number"
+                  value={formValue.mobile}
+                  placeholder="Enter your PhoneNumber"
+                  className="md:p-3 p-2 border border-grey-600 rounded"
+                />
+              </div>
+             </div>
+              <div className="flex flex-col mt-1">
+                <label className="md:font-semibold md:text-lg mb-1">Message</label>
+                <textarea onChange={handleChange}
+                  required
+                  name="message"
+                  value={formValue.message}
+                  placeholder="Enter your message"
+                  className="md:p-3 p-2 border border-grey-600 rounded w-full"
+                />
+              </div>
+            
+              <button
+                type="submit"
+                className="md:py-3 md:px-8 px-4 py-1 rounded bg-slate-500 mt-4 text-white font-semibold hover:bg-green-300 hover:text-white"
+              >
+                Send Me
+              </button>
+            </form>
+          </div>
+        {/* </div> */}
+      </Navbar>
     </>
   )
 }

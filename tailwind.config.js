@@ -5,6 +5,8 @@ module.exports = {
   theme: {
     extend: {},
   },
+  animation:{
+    "rotating" : "rotating 8s linear-infinite"  },
   backgroundImage:{
 "second-image" : "url('../src/Assetss/nature.png')"  },
   plugins: [],

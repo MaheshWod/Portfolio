@@ -4,17 +4,13 @@ import Navbar from '../components/Navbar'
 const About = () => {
   return (
     <>
-<Navbar/>
-<div className="w-full max-w-7xl px-4 mx-auto sm:px-8 mt-24">
-  <blockquote className="relative grid items-center bg-white shadow-xl md:grid-cols-3 rounded-xl">
+<Navbar>
+<div className="w-full max-w-7xl px-4 mx-auto sm:px-8 md:my-8 my-2 ">
+  <blockquote className="relative grid items-center bg-white shadow-xl md:grid-cols-3 rounded-xloo">
     
-    <img 
-      className="hidden object-cover w-full h-full rounded-l-xl md:block"
-      style={{ clipPath: 'polygon(0 0%, 100% 0%, 75% 100%, 0% 100%)' }} 
-      src="./Assetss/mahesh.jpg"
-    />
+    <img src="./mahesh.jpg" alt='images' className='md:w-full md:h-full w-full h-72 px-2'/>
 
-    <article className="relative p-6 md:p-8 md:col-span-2">
+    <article className="relative p-6 md:p-8 md:col-span-2 ">
       <svg className="absolute top-0 right-0 hidden w-24 h-24 -mt-12 -mr-12 text-primary-600 md:block" width="256"
         height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -24,22 +20,19 @@ const About = () => {
       </svg>
 
       <div className="space-y-8">
-        <p className="text-base sm:leading-relaxed md:text-2xl">
-          Hi, I'm John. I'm a 35-year-old software engineer with a passion for creating innovative solutions.
-          I graduated with a degree in Computer Science from a prestigious university and have been working in
-          the tech industry for over a decade. Throughout my career, I have gained extensive experience in
-          programming languages like Python, Java, and C++. I thrive in challenging environments and enjoy
-          collaborating with teams to develop cutting-edge software applications.
+        <p className=" md:text-2xl">
+        Hi, I'm Mahesh Wod, a frontend developer passionate about crafting innovative web solutions. I recently completed my Bachelor's degree in engineering at Pokhara University and am eagerly awaiting my results. With a strong foundation in frontend development, I am dedicated to building user-friendly and cutting-edge applications that drive impactful experiences.
         </p>
 
-        <footer className="flex items-center space-x-4 md:space-x-0">
-          <img className="w-12 h-12 rounded-full md:hidden" src="./Assetss/mahesh.jpg" />
+        {/* <footer className="flex items-center space-x-4 md:space-x-0">
+          <img className="w-12 h-12 rounded-full md:hidden" src="../Assetss/mahesh.jpg" />
           <span className="font-bold text-lg">Mahesh </span>
-        </footer>
+        </footer> */}
       </div>
     </article>
   </blockquote>
 </div>
+</Navbar>
 
     </>
     
