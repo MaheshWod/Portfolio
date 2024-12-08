@@ -10,10 +10,23 @@ import { MdAttachEmail } from "react-icons/md";
 import { FaRegCopyright } from "react-icons/fa6";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import {Link} from 'react-scroll'
-
 const Navbar = ({ children }) => {
+    // const location = useLocation()
+
+  
+    
     const [toggle, setToggle] = useState(false)
+
+    const activeLinkClass = "bg-green-300 text-black px-8 py-1 rounded md:hidden";
+    const defaultLinkClass = "bg-slate-500 text-white px-8 py-1 rounded hover:bg-green-300 hover:text-black md:hidden ";
+
+    const activeLinkClassmedium = "bg-green-300 text-black px-3 py-1 rounded ";
+    const defaultLinkClassmedium= "bg-slate-500 text-white px-3 py-1 rounded hover:bg-green-300 hover:text-black  ";
+    // const isActive = (path) => {
+    //     return location.pathname === path;
+    // };
 
     return (
         <>
@@ -29,30 +42,57 @@ const Navbar = ({ children }) => {
                         M-W
                     </Link>
                 </div>
-                {
-                    toggle ?
-                        <IoCloseSharp onClick={() => setToggle(!toggle)} className='text-white text-3xl md:hidden block' />
-                        : <IoMdMenu onClick={() => setToggle(!toggle)} className='text-white text-3xl md:hidden block ' />
-                }
-
-
+                {toggle ? (
+                    <IoCloseSharp onClick={() => setToggle(!toggle)} className='text-white text-3xl md:hidden block' />
+                ) : (
+                    <IoMdMenu onClick={() => setToggle(!toggle)} className='text-white text-3xl md:hidden block' />
+                )}
 
                 {/* Right-aligned Navigation Links */}
                 <ul className='hidden md:flex items-center text-white gap-8 ml-auto mr-6'>
-                    <li className='bg-slate-500 text-white px-2 py-1 rounded hover:bg-green-300 hover:text-black'><Link to="/about" >About</Link></li>
-                    <li className='bg-slate-500 text-white px-2 py-1 rounded hover:bg-green-300 hover:text-black'><Link to="/contact" className="hover:text-white-400">Contact</Link></li>
-                    <li className='bg-slate-500 text-white px-2 py-1 rounded hover:bg-green-300 hover:text-black'><Link to="/portfolio" className="hover:text-white-400">Portfolio</Link></li>
-                    <li className='bg-slate-500 text-white px-2 py-1 rounded hover:bg-green-300 hover:text-black'><Link to="/skills" className="hover:text-white-400 ">Skills</Link></li>
-
+                    <li>
+                        <NavLink to="/about" className={({ isActive }) => isActive ? activeLinkClassmedium : defaultLinkClassmedium}>
+                            About
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/contact" className={({ isActive }) => isActive ? activeLinkClassmedium : defaultLinkClassmedium}>
+                            Contact
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/portfolio" className={({ isActive }) => isActive ? activeLinkClassmedium : defaultLinkClassmedium}>
+                            Portfolio
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink to="/skills" className={({ isActive }) => isActive ? activeLinkClassmedium : defaultLinkClassmedium}>
+                            Skills
+                        </NavLink>
+                    </li>
                 </ul>
-                {/* Responsive */}
-                <ul className={` duration-300 md:hidden w-full h-screen opacity-90 text-white  bg-slate-400 opacity-3 fixed bg-b  md:top-[56px] top-[64px] space-y-2 ${toggle ? 'left-[0]' : 'left-[-100%] '}
-        ` }>
-                    <li className='p-4 hover:bg-red-300  bg-teal-800 mx-[1px] rounded mt-1'><Link to="/about" >About</Link></li>
-                    <li className='p-4 hover:bg-red-300  bg-teal-800 mx-[1px] rounded mt-1'><Link to="/contact">Contact</Link></li>
-                    <li className='p-4 hover:bg-red-300 bg-teal-800 mx-[1px] rounded mt-1'><Link to="/portfolio" >Portfolio</Link></li>
-                    <li className='p-4 hover:bg-red-300 bg-teal-800 mx-[1px] rounded mt-1'><Link to="/skills">Skills</Link></li>
 
+                {/* Responsive */}
+                <ul className={`duration-300 md:hidden w-full h-screen opacity-90 text-white flex flex-col items-center bg-slate-400 fixed top-[64px] space-y-7 ${toggle ? 'left-0' : 'left-[-100%]'} `}>
+                    <li className=' mt-2 '>
+                        <NavLink to="/about" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
+About                        </NavLink>
+                    </li>
+                    <li className=''>
+                        <NavLink to="/contact" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
+                            Contact
+                        </NavLink>
+                    </li>
+                    <li className=''>
+                        <NavLink to="/portfolio" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
+                            Portfolio
+                        </NavLink>
+                    </li>
+                    <li className=''>
+                        <NavLink to="/skills" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
+                            Skills
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
 
