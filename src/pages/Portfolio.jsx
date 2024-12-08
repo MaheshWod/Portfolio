@@ -1,8 +1,4 @@
-
-
-import React, { useState } from 'react'
 import Navbar from '../components/Navbar'
-
 const Portfolio = () => {
 
   const portfolioData = [
@@ -35,7 +31,7 @@ const Portfolio = () => {
 
             {portfolioData.map((item, index) => (
               <div key={index.id} className='shadow-lg rounded-md  md:px-2'>
-                <img src={item.image} className='w-full p-2  object-fill md:h-[400px] h-[300px]' />
+                <img src={item.image} alt='' className='w-full p-2  object-fill md:h-[400px] h-[300px]' />
                 <h1 className='font-semibold my-2 text-center text-black'>{item.title}</h1>
                 <a
                   href={item.link}

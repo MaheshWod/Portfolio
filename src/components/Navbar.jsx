@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react';
+import React, {  useState } from 'react';
 import { IoMdMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import mahesh from '../Assetss/mahesh.jpg'
@@ -7,11 +7,9 @@ import { FaSquareGithub } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { MdAttachEmail } from "react-icons/md";
-import { FaRegCopyright } from "react-icons/fa6";
 import { FaWhatsappSquare } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-// import {Link} from 'react-scroll'
 const Navbar = ({ children }) => {
     // const location = useLocation()
 
@@ -186,8 +184,8 @@ About                        </NavLink>
                                     to={'/login'}
                                     className="flex items-center space-x-1 rounded hover:bg-slate-500  transition-all duration-200 px-1"
                                 >
-                                    <FaFacebook className="mt-1" />
-                                    <h1>Facebook</h1>
+                                    <FaPhoneVolume className="mt-1" />
+                                    <h1>MobileNo.</h1>
                                 </Link>
                             </div>
 

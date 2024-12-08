@@ -48,7 +48,7 @@ const Home = () => {
           <div className="md:w-1/2 flex justify-center items-center mb-1 md:mb-0 md:mt-9 md:ml-20 ">
             <img
               src={mahesh}
-              alt="photo"
+              alt=""
               className="rounded-full  md:w-[300px] md:h-[300px] w-[280px] h-[280px] border-2 border-gray-400 object-cover"
             />
           </div>
