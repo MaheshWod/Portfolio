@@ -38,7 +38,7 @@ const Home = () => {
             </p>
 
             <Link to="./HireMe">
-              <button className="p-2 px-6 mt-6 bg-slate-400 font-bold text-white rounded hover:bg-green-300 hover:text-black">
+              <button className="p-2 px-6 mt-6 bg-slate-500 font-bold text-white rounded hover:bg-green-300 hover:text-black">
                 Hire Me
               </button>
             </Link>
@@ -49,7 +49,7 @@ const Home = () => {
             <img
               src={mahesh}
               alt=""
-              className="rounded-full  md:w-[300px] md:h-[300px] w-[280px] h-[280px] border-2 border-gray-400 object-cover"
+              className="rounded-full  md:w-[300px] md:h-[300px] w-[220px] h-[220px] border-2 border-gray-400 object-cover"
             />
           </div>
         </div>

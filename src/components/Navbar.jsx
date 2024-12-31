@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import { IoMdMenu } from "react-icons/io";
 import { IoCloseSharp } from "react-icons/io5";
 import mahesh from '../Assetss/mahesh.jpg'
@@ -13,15 +13,48 @@ import { NavLink } from 'react-router-dom';
 const Navbar = ({ children }) => {
     // const location = useLocation()
 
-  
-    
+    const portfolioData = [
+        {
+            id: 1,
+           
+            title: "PortfolioApp",
+            link: "https://mw-project.netlify.app",
+        },
+        {
+            id: 2,
+            
+            title: "E-Commerce-Firebase",
+            link: "https://mw-ecommerce.netlify.app",
+        },
+        {
+            id: 3,
+            title: "WeatherApp",
+
+            link: "https://mw-climate-weatherapp.netlify.app",
+        },
+        {
+            id: 3,
+            title: "ReduxApp",
+
+            link: "https://redux-project-firebase.netlify.app",
+        },
+
+
+        {
+            id: 3,
+           title:'MovieApp',
+            link: "https://mw-movieapp.netlify.app",
+        },
+
+    ];
+
     const [toggle, setToggle] = useState(false)
 
     const activeLinkClass = "bg-green-300 text-black px-8 py-1 rounded md:hidden";
     const defaultLinkClass = "bg-slate-500 text-white px-8 py-1 rounded hover:bg-green-300 hover:text-black md:hidden ";
 
     const activeLinkClassmedium = "bg-green-300 text-black px-3 py-1 rounded ";
-    const defaultLinkClassmedium= "bg-slate-500 text-white px-3 py-1 rounded hover:bg-green-300 hover:text-black  ";
+    const defaultLinkClassmedium = "bg-slate-500 text-white px-3 py-1 rounded hover:bg-green-300 hover:text-black  ";
     // const isActive = (path) => {
     //     return location.pathname === path;
     // };
@@ -74,7 +107,7 @@ const Navbar = ({ children }) => {
                 <ul className={`duration-300 md:hidden w-full h-screen opacity-90 text-white flex flex-col items-center bg-slate-400 fixed top-[64px] space-y-7 ${toggle ? 'left-0' : 'left-[-100%]'} `}>
                     <li className=' mt-2 '>
                         <NavLink to="/about" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
-About                        </NavLink>
+                            About                        </NavLink>
                     </li>
                     <li className=''>
                         <NavLink to="/contact" className={({ isActive }) => isActive ? activeLinkClass : defaultLinkClass}>
@@ -100,11 +133,11 @@ About                        </NavLink>
 
 
             {/* footer section */}
-            <footer className='bg-slate-700  px-4 md:px-20 md:py-16 py-8  '>
+            <footer className='bg-slate-700  px-4 md:px-20 md:py-2 py-8 hidden md:block '>
                 <div className='md:w-full md:mx-auto grid md:grid-cols-4 grid-cols-1 text-black md:gap-4 gap-3 mx-3'>
                     <div >
                         <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Brand Details</h1>
-                        <p className='text-white mb-6'>
+                        <p className='text-slate-200 mb-6'>
                             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
                         </p>
                         <div className="md:w-[100px] md:h-[100px] h-[60px] w-[60px] rounded-full border-2 border-gray-300 m-1  ">
@@ -116,27 +149,32 @@ About                        </NavLink>
                         </div>
                     </div>
 
-                    <div  className='px-2'>
-                        <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Website Links</h1>
-                        {/* <ul className='md:space-y-2 space-y-[0px] flex flex-col items-start  '>
-                            {menus.map((item, index) => (
-                                <li key={index} className="inline-block hover:bg-stone-500  rounded py-1 hover:px-2 hover:text-white">
-                                    <Link 
-                                    to={item.href}>{item.label}</Link>
+                    <div className='px-2 '>
+                        <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Project Links</h1>
+                        <ul className="space-y-2">
+                            {portfolioData.map((item, index) => (
+                                <li key={index.id}>
+                                    <a
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-slate-200 hover:underline"
+                                    >
+                                        {item.title}
+                                    </a>
                                 </li>
                             ))}
-                            <li className='hover:bg-stone-500 hover:px-2 rounded hover:text-white' ><Link to={'/login'}>Login</Link></li>
-                            <li className='hover:bg-stone-500 hover:px-2 rounded hover:text-white'><Link to={'navlayout/signup'}>SignUp</Link></li>
-                        </ul> */}
+                        </ul>
+
                     </div>
 
-                    <div className='px-2'>
+                    <div className='px-2 '>
                         <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Follow Us</h1>
                         <div className="space-y-2 flex flex-col">
-                            <div className="text-white inline-block">
+                            <div className="text-slate-200 ">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500  transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
                                 >
                                     <FaFacebook className="mt-1" />
                                     <h1>Facebook</h1>
@@ -146,7 +184,7 @@ About                        </NavLink>
                             <div className="text-white inline-block">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500  transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
                                 >
                                     <FaLinkedin className="mt-1" />
                                     <h1>linkedin</h1>
@@ -155,7 +193,7 @@ About                        </NavLink>
                             <div className="text-white inline-block">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500 transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline transition-all duration-200 px-1"
                                 >
                                     <MdAttachEmail className="mt-1" />
                                     <h1>Email</h1>
@@ -164,7 +202,7 @@ About                        </NavLink>
                             <div className="text-white inline-block">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500 transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline transition-all duration-200 px-1"
                                 >
                                     <FaSquareGithub className="mt-1" />
                                     <h1>GItHub</h1>
@@ -173,7 +211,7 @@ About                        </NavLink>
                             <div className="text-white inline-block">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500  transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline transition-all duration-200 px-1"
                                 >
                                     <FaWhatsappSquare className="mt-1" />
                                     <h1>WhatsApp</h1>
@@ -182,14 +220,14 @@ About                        </NavLink>
                             <div className="text-white inline-block">
                                 <Link
                                     to={'/login'}
-                                    className="flex items-center space-x-1 rounded hover:bg-slate-500  transition-all duration-200 px-1"
+                                    className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
                                 >
                                     <FaPhoneVolume className="mt-1" />
                                     <h1>MobileNo.</h1>
                                 </Link>
                             </div>
 
-                            </div>
+                        </div>
 
                     </div>
 
@@ -215,7 +253,7 @@ About                        </NavLink>
                                     name='message'
                                 />
                                 <button
-                                    className='bg-slate-500 text-white md:px-3 px-2 md:py-2 py-1 rounded-md hover:bg-green-300 hover:text-white font-semibold hover:text-black'
+                                    className='bg-slate-500 text-white md:px-3 px-2 md:py-2 py-1 rounded-md hover:bg-green-300 hover:text-white font-semibold '
                                 >
                                     Submit
                                 </button>
@@ -223,6 +261,163 @@ About                        </NavLink>
                         </div>
                     </div>
                 </div>
+
+                
+      <div className=" gap-2 rounded w-1/3 mx-auto">
+        <div className="flex justify-center items-center gap-4 p-4 text-white font-xl">
+          <MdAttachEmail  />
+          <FaFacebook  />
+          <FaLinkedin  />
+          <FaPhoneVolume  />
+          <FaSquareGithub  />
+          
+        </div>
+      </div>
+            </footer>
+
+            {/* yo mobile ko lagi footer */}
+            <footer className='bg-slate-700  px-4   py-2 md:hidden block '>
+                <div className='md:w-full md:mx-auto grid md:grid-cols-4 grid-cols-1 text-black md:gap-4 gap-3 mx-3'>
+                    <div >
+                        <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Brand Details</h1>
+                        <p className='text-white mb-6'>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                        <div className="md:w-[100px] md:h-[100px] h-[60px] w-[60px] rounded-full border-2 border-gray-300 m-1  ">
+                            <img
+                                src="./mahesh.jpg"
+                                alt="Avatar"
+                                className="w-full h-full object-cover rounded-full"
+                            />
+                        </div>
+                    </div>
+
+
+
+                    {/* yo mobile ko lagi 2 ota matra xa yasam */}
+                    <div className='md:hidden grid grid-cols-2 px-1 gap-x-2'>
+                    <div className='px-1 '>
+                        <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Project Links</h1>
+                        <ul className="space-y-2">
+                            {portfolioData.map((item, index) => (
+                                <li key={index.id}>
+                                    <a
+                                        href={item.link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-slate-200 hover:underline"
+                                    >
+                                        {item.title}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
+
+                    </div>
+
+                        <div className='px-2'>
+                            <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Follow Us</h1>
+                            <div className="space-y-2 flex flex-col">
+                                <div className="text-slate-200 inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
+                                    >
+                                        <FaFacebook className="mt-1" />
+                                        <h1>Facebook</h1>
+                                    </Link>
+                                </div>
+
+                                <div className="text-white inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
+                                    >
+                                        <FaLinkedin className="mt-1" />
+                                        <h1>linkedin</h1>
+                                    </Link>
+                                </div>
+                                <div className="text-white inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline transition-all duration-200 px-1"
+                                    >
+                                        <MdAttachEmail className="mt-1" />
+                                        <h1>Email</h1>
+                                    </Link>
+                                </div>
+                                <div className="text-white inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline transition-all duration-200 px-1"
+                                    >
+                                        <FaSquareGithub className="mt-1" />
+                                        <h1>GItHub</h1>
+                                    </Link>
+                                </div>
+                                <div className="text-white inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
+                                    >
+                                        <FaWhatsappSquare className="mt-1" />
+                                        <h1>WhatsApp</h1>
+                                    </Link>
+                                </div>
+                                <div className="text-white inline-block">
+                                    <Link
+                                        to={'/login'}
+                                        className="flex items-center space-x-1 rounded hover:underline  transition-all duration-200 px-1"
+                                    >
+                                        <FaPhoneVolume className="mt-1" />
+                                        <h1>MobileNo.</h1>
+                                    </Link>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div className='px-2'>
+                        <h1 className='font-semibold md:text-2xl text-[18px] md:mb-3 mb-2 text-white'>Contact Us</h1>
+                        <div className='text-black'>
+                            <form className='md:space-y-4 space-y-2'>
+                                <input className='bg-white w-full md:p-3 p-2 rounded'
+                                    required
+                                    type='text'
+                                    placeholder='Enter the Full Name'
+                                    name='fullName'
+                                />
+                                <input className='bg-white w-full md:p-3 p-2 rounded'
+                                    required
+                                    type='email'
+                                    placeholder='Enter Email'
+                                    name='email'
+                                />
+                                <textarea className='bg-white w-full md:p-3 p-2 rounded'
+                                    required
+                                    placeholder='Enter the message'
+                                    name='message'
+                                />
+                                <button
+                                    className='bg-slate-500 text-white md:px-3 px-2 md:py-2 py-1 rounded-md hover:bg-green-300 hover:text-white font-semibold '
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div className=" gap-2 rounded w-3/5 mx-auto mt-3">
+        <div className="flex justify-center items-center gap-4 p-4 text-white font-xl">
+          <MdAttachEmail  />
+          <FaFacebook  />
+          <FaLinkedin  />
+          <FaPhoneVolume  />
+          <FaSquareGithub  />
+          
+        </div>
+      </div>
             </footer>
         </>
     );
