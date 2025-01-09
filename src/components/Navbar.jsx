@@ -47,7 +47,7 @@ const Navbar = ({ children }) => {
         },
         {
             id:6,
-            image:'./food.jpg',
+            image:'./food.png',
             title:'FoodMenu',
             link:'https://foodmenu-react.vercel.app/'
           }
@@ -321,9 +321,9 @@ const Navbar = ({ children }) => {
 
                     </div>
 
-                        <div className='px-2'>
+                        <div className='px-2 '>
                             <h1 className='text-white font-semibold md:text-2xl text-[18px] md:mb-3 mb-2'>Follow Us</h1>
-                            <div className="space-y-2 flex flex-col">
+                            <div className="space-y-2 flex flex-col gap-[5px]">
                                 <div className="text-slate-200 inline-block">
                                     <Link
                                         to={'/login'}

@@ -36,7 +36,7 @@ const Portfolio = () => {
     },
     {
       id:6,
-      image:'./food.jpg',
+      image:'./food.png',
       title:'FoodMenu',
       link:'https://foodmenu-react.vercel.app/'
     }
