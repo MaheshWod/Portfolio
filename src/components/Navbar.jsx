@@ -33,7 +33,7 @@ const Navbar = ({ children }) => {
             link: "https://mw-climate-weatherapp.netlify.app",
         },
         {
-            id: 3,
+            id: 4,
             title: "ReduxApp",
 
             link: "https://redux-project-firebase.netlify.app",
@@ -41,10 +41,16 @@ const Navbar = ({ children }) => {
 
 
         {
-            id: 3,
+            id: 5,
            title:'MovieApp',
             link: "https://mw-movieapp.netlify.app",
         },
+        {
+            id:6,
+            image:'./food.jpg',
+            title:'FoodMenu',
+            link:'https://foodmenu-react.vercel.app/'
+          }
 
     ];
 
