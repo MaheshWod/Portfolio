@@ -21,7 +21,7 @@ const Portfolio = () => {
       link: "https://mw-climate-weatherapp.netlify.app",
     },
     {
-      id: 3,
+      id: 4,
       image: "./redux.jpg",
       title: "Redux-firebase ",
       link: "https://redux-project-firebase.netlify.app",
@@ -29,11 +29,17 @@ const Portfolio = () => {
    
   
     {
-      id: 3,
+      id: 5,
       image: "./movie.jpg",
       title: "MovieApp ",
       link: "https://mw-movieapp.netlify.app",
     },
+    {
+      id:6,
+      image:'./food.jpg',
+      title:'FoodMenu',
+      link:'https://foodmenu-react.vercel.app/'
+    }
  
   ];
   return (
